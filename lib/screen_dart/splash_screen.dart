@@ -17,7 +17,7 @@ class _SplashScreenState extends State<SplashScreen>
     super.initState();
     _controller = AnimationController(
       vsync: this,
-      duration: Duration(seconds: 4),
+      duration: Duration(seconds: 3),
     );
     _controller.addStatusListener((status) {
       if (status == AnimationStatus.completed) {
@@ -50,15 +50,21 @@ class _SplashScreenState extends State<SplashScreen>
                 },
               ),
             ),
-            const SizedBox(height: 100),
+            const SizedBox(height: 150),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 Container(
                   width: 350,
                   height: 50,
+                  decoration: BoxDecoration(),
                   child: ElevatedButton(
                       onPressed: () => _controller.forward(),
+                      style: ElevatedButton.styleFrom(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(12)
+                        )
+                      ),
                       child: const Text('Continue')),
                 ),
               ],

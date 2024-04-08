@@ -15,6 +15,8 @@ class BlocFormScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    final maskFormatter = MaskTextInputFormatter(mask: '+998#-###-##-##', filter: {"#": RegExp(r'[0-9]')});
     return Scaffold(
       body: BlocBuilder<FormBloc, AppFormState>(
         builder: (context, state) {
@@ -31,10 +33,12 @@ class BlocFormScreen extends StatelessWidget {
                       children: [
                         Column(
                           children: [
-                            Text(
-                              "Welcome to Eriell",
-                              style: TextStyle(
-                                  fontSize: 40, fontWeight: FontWeight.bold),
+                            Center(
+                              child: Text(
+                                "Welcome to Eriell",
+                                style: TextStyle(
+                                    fontSize: 50, fontWeight: FontWeight.bold),
+                              ),
                             ),
                             Text(""),
                           ],
@@ -60,7 +64,9 @@ class BlocFormScreen extends StatelessWidget {
                         const SizedBox(height: 45),
                         Customnumber(
                           hintText: 'phone',
-                          inputFormatters: [],
+                          inputFormatters: [
+                            maskFormatter
+                          ],
                           onChange: (val) {
                             BlocProvider.of<FormBloc>(context).add(
                                 PhoneChanged(phone: BlocFormItem(value: val!)));
